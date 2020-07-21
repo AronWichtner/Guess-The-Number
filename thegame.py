@@ -79,3 +79,4 @@ print(gamee())
 
 # GUI einführen
 # Leben einführen
+#sf
