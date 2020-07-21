@@ -75,3 +75,7 @@ def anothergame():
 
 
 print(gamee())
+
+
+# GUI einführen
+# Leben einführen
