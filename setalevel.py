@@ -1,4 +1,4 @@
-# level5: all levels at once
+# create level 5: all levels at once
 import random
 
 
