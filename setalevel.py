@@ -2,12 +2,12 @@
 import random
 
 
-def generatenumber(limit):
+def generate_number(limit):
     random_number = random.randint(0, limit)
     return random_number
 
 
-def level():
+def get_users_level_or_false():
     try:
         x = int(input("In what level do you want to play? Type in the number(1 for level 1, 2 for...): "))
     except ValueError:

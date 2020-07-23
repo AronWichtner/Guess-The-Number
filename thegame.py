@@ -2,32 +2,32 @@ from userinputprocessing import *
 from setalevel import *
 
 
-def gamee():
-    print(start())
+def game():
+    print(introduction())
     while True:
-        x = level()
+        x = get_users_level_or_false()
         if x == False:
             continue
         else:
-            rannum = generatenumber(x)
+            rannum = generate_number(x)
         while True:
-            i = intiger()
+            i = check_for_intiger()
             if type(i) == int:
-                a = within_the_limit(i, x)
+                a = is_within_the_limit(i, x)
                 if a == False:
                     continue
                 else:
-                    solution = higher_lower_win(i, rannum)
+                    solution = is_it_higher_lower_win(i, rannum)
                     if solution == False:
                         continue
                     else:
                         print(solution)
-                        return anothergame()
+                        return start_another_game()
             else:
                 continue
 
 
-def start():
+def introduction():
     return """\nIn this game you have to guess a random number between 0 and another number.
 There are five difficulty levels.
 ->0-10 (level 1)
@@ -37,11 +37,11 @@ There are five difficulty levels.
 ->all levels at once (level 5)\n"""
 
 
-def anothergame():
+def start_another_game():
     while True:
         ans = input("Do you want to play another game?\nType Y for yes or N for no: ")
         if ans == "y" or ans == "Y":
-            return gamee()
+            return game()
         elif ans == "n" or ans == "N":
             return "\nok bye:(\n"
         else:
@@ -49,7 +49,7 @@ def anothergame():
             continue
 
 
-print(gamee())
+print(game())
 
 
 

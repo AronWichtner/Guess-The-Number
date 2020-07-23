@@ -1,4 +1,4 @@
-def intiger():
+def check_for_intiger():
     try:
         users_input = int(input("\nGuess is the number? \n"))
     except ValueError:
@@ -7,7 +7,7 @@ def intiger():
         return users_input
 
 
-def within_the_limit(users_input, limit):
+def is_within_the_limit(users_input, limit):
     if users_input > limit or users_input < 0:
         print("\n{} is not within 0 to {}.\n".format(users_input, limit))
         users_input = False
@@ -17,7 +17,7 @@ def within_the_limit(users_input, limit):
         return users_input
 
 
-def higher_lower_win(users_number, random_number):
+def is_it_higher_lower_win(users_number, random_number):
     if users_number < random_number:
         users_number = False
         print("\nguess higher!\n")
