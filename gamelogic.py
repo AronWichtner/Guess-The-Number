@@ -8,12 +8,18 @@ def game():
         x = get_users_level_or_false()
         if x == False:
             continue
+        elif type(x) == list:
+            rannumbs = generate_number_for_five(x)
+            listitem = 0
+            rannum = rannumbs[listitem]
+            limit = x[listitem]
         else:
-            rannum = generate_number(x)
+            rannum = generate_number_for_onetofour(x)
+            limit = x
         while True:
             i = check_for_intiger()
             if type(i) == int:
-                a = is_within_the_limit(i, x)
+                a = is_within_the_limit(i, limit)
                 if a == False:
                     continue
                 else:
@@ -21,8 +27,22 @@ def game():
                     if solution == False:
                         continue
                     else:
-                        print(solution)
-                        return start_another_game()
+                        if type(x) == list:
+                            listitem = listitem + 1
+                            if listitem == 4:
+                                print(solution)
+                                print("You completed all levels.")
+                                return start_another_game()
+                            else:
+                                print(solution)
+                                print("You are entering the next level.")
+                                rannum = rannumbs[listitem]
+                                limit = x[listitem]
+                                continue
+                        else:
+                            print(solution)
+                            print("You completed this level")
+                            return start_another_game()
             else:
                 continue
 
