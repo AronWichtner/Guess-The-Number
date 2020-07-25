@@ -1,4 +1,4 @@
-def check_for_intiger():
+def check_for_integer():
     try:
         users_input = int(input("\nGuess is the number? \n"))
     except ValueError:

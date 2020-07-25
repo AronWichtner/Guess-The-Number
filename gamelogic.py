@@ -17,7 +17,7 @@ def game():
             rannum = generate_number_for_onetofour(x)
             limit = x
         while True:
-            i = check_for_intiger()
+            i = check_for_integer()
             if type(i) == int:
                 a = is_within_the_limit(i, limit)
                 if a == False:
