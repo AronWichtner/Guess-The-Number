@@ -1,6 +1,6 @@
 def check_for_integer():
     try:
-        users_input = int(input("\nGuess is the number? \n"))
+        users_input = int(input("\nGuess is the number: \n"))
     except ValueError:
         print("You may only use integer!\n")
     else:
