@@ -32,43 +32,42 @@ def game():
             print("\nlives: ", userslives)
             users_number = check_for_integer()
 
-            if type(users_number) == int:
-                if is_number_out_of_limit(users_number, limit):
-                    continue
-                if users_number in previously_guessed_numbers:
-                    print(f"Number: {users_number} was already guessed!")
-                    continue
-                previously_guessed_numbers.add(users_number)
+            if type(users_number) != int:
+                continue
+            if is_number_out_of_limit(users_number, limit):
+                continue
+            if users_number in previously_guessed_numbers:
+                print(f"Number: {users_number} was already guessed!")
+                continue
+            previously_guessed_numbers.add(users_number)
 
-                solution = is_it_higher_lower_win(users_number, rannum)
-                if solution[0] == False:
-                    reducelive(userslives, 0)
-                    if len(userslives) == 0:
-                        print("""GAME OVER! You lost all your lives
+            solution = is_it_higher_lower_win(users_number, rannum)
+            if solution[0] == False:
+                reducelive(userslives, 0)
+                if len(userslives) == 0:
+                    print("""GAME OVER! You lost all your lives
 The correct answer would have been {}\n""".format(rannum))
+                    return start_another_game()
+                else:
+                    print(solution[1])
+                    continue
+            else:
+                if type(x) == list:
+                    listitem = listitem + 1
+                    if listitem == 4:
+                        print(solution[1])
+                        print("You completed all levels.")
                         return start_another_game()
                     else:
                         print(solution[1])
+                        print("You are now entering the next level.")
+                        rannum = rannumbs[listitem]
+                        limit = x[listitem]
                         continue
                 else:
-                    if type(x) == list:
-                        listitem = listitem + 1
-                        if listitem == 4:
-                            print(solution[1])
-                            print("You completed all levels.")
-                            return start_another_game()
-                        else:
-                            print(solution[1])
-                            print("You are now entering the next level.")
-                            rannum = rannumbs[listitem]
-                            limit = x[listitem]
-                            continue
-                    else:
-                        print(solution[1])
-                        print("You completed this level.")
-                        return start_another_game()
-            else:
-                continue
+                    print(solution[1])
+                    print("You completed this level.")
+                    return start_another_game()
 
 
 def introduction():
