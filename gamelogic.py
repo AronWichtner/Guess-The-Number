@@ -29,13 +29,12 @@ def game():
                 userslives = userslives[3]
         while True:
             print("\nlives: ", userslives)
-            i = check_for_integer()
-            if type(i) == int:
-                a = is_within_the_limit(i, limit)
-                if a == False:
+            users_number = check_for_integer()
+            if type(users_number) == int:
+                if is_number_out_of_limit(users_number, limit):
                     continue
                 else:
-                    solution = is_it_higher_lower_win(i, rannum)
+                    solution = is_it_higher_lower_win(users_number, rannum)
                     if solution[0] == False:
                         reducelive(userslives, 0)
                         if len(userslives) == 0:

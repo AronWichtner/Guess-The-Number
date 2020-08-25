@@ -6,16 +6,11 @@ def check_for_integer():
     else:
         return users_input
 
-
-def is_within_the_limit(users_input, limit):
-    if users_input > limit or users_input < 0:
+def is_number_out_of_limit(users_input, limit):
+    is_out_of_limit = users_input > limit or users_input < 0
+    if is_out_of_limit:
         print("\n{} is not within 0 to {}.\n".format(users_input, limit))
-        users_input = False
-        return users_input
-    else:
-        users_input = True
-        return users_input
-
+    return is_out_of_limit
 
 def is_it_higher_lower_win(users_number, random_number):
     if users_number < random_number:
