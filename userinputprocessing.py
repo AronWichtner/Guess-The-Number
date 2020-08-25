@@ -1,10 +1,10 @@
-def check_for_integer():
+def read_users_number_or_none():
     try:
-        users_input = int(input("Guess is the number: \n"))
+        users_number = int(input("Guess is the number: \n"))
+        return users_number
     except ValueError:
         print("You may only use integer!\n")
-    else:
-        return users_input
+        return None
 
 def is_number_out_of_limit(users_input, limit):
     is_out_of_limit = users_input > limit or users_input < 0

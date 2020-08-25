@@ -30,9 +30,8 @@ def game():
         previously_guessed_numbers = set()
         while True:
             print("\nlives: ", userslives)
-            users_number = check_for_integer()
-
-            if type(users_number) != int:
+            users_number = read_users_number_or_none()
+            if users_number is None:
                 continue
             if is_number_out_of_limit(users_number, limit):
                 continue
