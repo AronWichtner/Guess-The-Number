@@ -1,5 +1,5 @@
 Upcoming changes:
 
-* user-lives
+* remind player if he uses a number twice
 * gui
 * multiplayer or singelplayer

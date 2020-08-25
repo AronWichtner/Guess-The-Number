@@ -1,11 +1,13 @@
 from userinputprocessing import *
 from setalevel import *
+from userlives import *
 
 
 def game():
     print(introduction())
     while True:
         x = get_users_level_or_false()
+        userslives = crate_users_lives()
         if x == False:
             continue
         elif type(x) == list:
@@ -13,10 +15,20 @@ def game():
             listitem = 0
             rannum = rannumbs[listitem]
             limit = x[listitem]
+            userslives = userslives[4]
         else:
             rannum = generate_number_for_onetofour(x)
             limit = x
+            if limit == 10:
+                userslives = userslives[0]
+            elif limit == 20:
+                userslives = userslives[1]
+            elif limit == 50:
+                userslives = userslives[2]
+            elif limit == 100:
+                userslives = userslives[3]
         while True:
+            print("\nlives: ", userslives)
             i = check_for_integer()
             if type(i) == int:
                 a = is_within_the_limit(i, limit)
@@ -24,23 +36,30 @@ def game():
                     continue
                 else:
                     solution = is_it_higher_lower_win(i, rannum)
-                    if solution == False:
-                        continue
+                    if solution[0] == False:
+                        reducelive(userslives, 0)
+                        if len(userslives) == 0:
+                            print("""GAME OVER! You lost all your lives
+The correct answer would have been {}\n""".format(rannum))
+                            return start_another_game()
+                        else:
+                            print(solution[1])
+                            continue
                     else:
                         if type(x) == list:
                             listitem = listitem + 1
                             if listitem == 4:
-                                print(solution)
+                                print(solution[1])
                                 print("You completed all levels.")
                                 return start_another_game()
                             else:
-                                print(solution)
-                                print("You are entering the next level.")
+                                print(solution[1])
+                                print("You are now entering the next level.")
                                 rannum = rannumbs[listitem]
                                 limit = x[listitem]
                                 continue
                         else:
-                            print(solution)
+                            print(solution[1])
                             print("You completed this level.")
                             return start_another_game()
             else:
