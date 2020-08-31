@@ -1,47 +1,34 @@
 import random
 
-
-def generate_number_for_onetofour(limit):
-    random_number = random.randint(0, limit)
-    return random_number
+from UserLevelInput import UserLevelInput
 
 
-def generate_number_for_five(limits):
-    rannum1 = random.randint(0, limits[0])
-    rannum2 = random.randint(0, limits[1])
-    rannum3 = random.randint(0, limits[2])
-    rannum4 = random.randint(0, limits[3])
-    rannumbs = [rannum1, rannum2, rannum3, rannum4]
-    return rannumbs
+def generate_random_numbers(limits: [int]):
+    return [random.randint(0, limit) for limit in limits]
 
 
-def get_users_level_or_false():
+def get_level_limits(level: int) -> [int]:
+    return {
+        1: [10],
+        2: [20],
+        3: [50],
+        4: [100],
+        5: [10, 20, 50, 100]
+    }.get(level)
+
+
+def get_users_level() -> UserLevelInput:
     try:
-        x = int(input("In what level do you want to play? Type in the number(1 for level 1, 2 for...): "))
+        level_input = int(input("In what level do you want to play? Type in the number(1 for level 1, 2 for...): "))
+        if not 1 <= level_input <= 5:
+            print("there are only levels from one to five\n")
+            return UserLevelInput(is_valid=False)
     except ValueError:
         print("We did not understand your input.")
-        return False
-    else:
-        if x == 1:
-            limit = 10
-            return limit
-        elif x == 2:
-            limit = 20
-            return limit
-        elif x == 3:
-            limit = 50
-            return limit
-        elif x == 4:
-            limit = 100
-            return limit
-        elif x == 5:
-            limit1 = 10
-            limit2 = 20
-            limit3 = 50
-            limit4 = 100
-            limits = [limit1, limit2, limit3, limit4]
-            return limits
-        else:
-            print("there are only levels from one to five\n")
-            return False
+        return UserLevelInput(is_valid=False)
 
+    return UserLevelInput(
+        level=level_input,
+        limits=get_level_limits(level_input),
+        is_valid=True
+    )

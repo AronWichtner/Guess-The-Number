@@ -9,7 +9,7 @@ def game():
 
 
         # which level
-        x = get_users_level_or_false()
+        x = get_users_level()
         userslives = crate_users_lives()
         if x == False:
             continue
@@ -17,7 +17,7 @@ def game():
 
         # set up for level 5
         elif type(x) == list:
-            rannumbs = generate_number_for_five(x)
+            rannumbs = generate_random_numbers(x)
             listitem = 0
             rannum = rannumbs[listitem]
             limit = x[listitem]
@@ -26,7 +26,7 @@ def game():
 
         # set up for level 1 to 4
         else:
-            rannum = generate_number_for_onetofour(x)
+            rannum = generate_random_number(x)
             limit = x
             if limit == 10:
                 userslives = userslives[0]

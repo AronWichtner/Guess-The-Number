@@ -6,19 +6,20 @@ from userlives import *
 def game():
     print(introduction())
     while True:
-        x = get_users_level_or_false()
+        level_input = get_users_level()
         userslives = crate_users_lives()
-        if x == False:
+
+        if not level_input.is_valid:
             continue
-        elif type(x) == list:
-            rannumbs = generate_number_for_five(x)
+        elif level_input.level == 5:
+            rannumbs = generate_random_numbers(level_input.limits)
             listitem = 0
             rannum = rannumbs[listitem]
-            limit = x[listitem]
+            limit = level_input.limits[listitem]
             userslives = userslives[4]
         else:
-            rannum = generate_number_for_onetofour(x)
-            limit = x
+            limit = level_input.limits[0]
+            rannum = generate_random_numbers(level_input.limits)[0]
             if limit == 10:
                 userslives = userslives[0]
             elif limit == 20:
@@ -27,6 +28,7 @@ def game():
                 userslives = userslives[2]
             elif limit == 100:
                 userslives = userslives[3]
+
         previously_guessed_numbers = set()
         while True:
             print("\nlives: ", userslives)
@@ -51,7 +53,7 @@ The correct answer would have been {}\n""".format(rannum))
                     print(solution[1])
                     continue
             else:
-                if type(x) == list:
+                if type(level_input) == list:
                     listitem = listitem + 1
                     if listitem == 4:
                         print(solution[1])
@@ -61,7 +63,7 @@ The correct answer would have been {}\n""".format(rannum))
                         print(solution[1])
                         print("You are now entering the next level.")
                         rannum = rannumbs[listitem]
-                        limit = x[listitem]
+                        limit = level_input[listitem]
                         continue
                 else:
                     print(solution[1])
