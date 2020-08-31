@@ -10,7 +10,7 @@ def game():
 
         # which level
         x = get_users_level()
-        userslives = crate_users_lives()
+        userslives = get_users_lives()
         if x == False:
             continue
 

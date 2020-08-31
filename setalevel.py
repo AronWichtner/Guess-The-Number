@@ -1,6 +1,7 @@
 import random
 
-from UserLevelInput import UserLevelInput
+from Level import Level
+from userlives import get_users_lives
 
 
 def generate_random_numbers(limits: [int]):
@@ -17,18 +18,19 @@ def get_level_limits(level: int) -> [int]:
     }.get(level)
 
 
-def get_users_level() -> UserLevelInput:
+def get_users_level() -> Level:
     try:
-        level_input = int(input("In what level do you want to play? Type in the number(1 for level 1, 2 for...): "))
-        if not 1 <= level_input <= 5:
+        level = int(input("In what level do you want to play? Type in the number(1 for level 1, 2 for...): "))
+        if not 1 <= level <= 5:
             print("there are only levels from one to five\n")
-            return UserLevelInput(is_valid=False)
+            return Level(is_valid=False)
     except ValueError:
         print("We did not understand your input.")
-        return UserLevelInput(is_valid=False)
+        return Level(is_valid=False)
 
-    return UserLevelInput(
-        level=level_input,
-        limits=get_level_limits(level_input),
+    return Level(
+        level=level,
+        limits=get_level_limits(level),
+        user_lives=get_users_lives(level),
         is_valid=True
     )

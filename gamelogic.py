@@ -6,32 +6,22 @@ from userlives import *
 def game():
     print(introduction())
     while True:
-        level_input = get_users_level()
-        userslives = crate_users_lives()
+        level = get_users_level()
 
-        if not level_input.is_valid:
+        if not level.is_valid:
             continue
-        elif level_input.level == 5:
-            rannumbs = generate_random_numbers(level_input.limits)
+        elif level.level == 5:
+            rannumbs = generate_random_numbers(level.limits)
             listitem = 0
             rannum = rannumbs[listitem]
-            limit = level_input.limits[listitem]
-            userslives = userslives[4]
+            limit = level.limits[listitem]
         else:
-            limit = level_input.limits[0]
-            rannum = generate_random_numbers(level_input.limits)[0]
-            if limit == 10:
-                userslives = userslives[0]
-            elif limit == 20:
-                userslives = userslives[1]
-            elif limit == 50:
-                userslives = userslives[2]
-            elif limit == 100:
-                userslives = userslives[3]
+            limit = level.limits[0]
+            rannum = generate_random_numbers(level.limits)[0]
 
         previously_guessed_numbers = set()
         while True:
-            print("\nlives: ", userslives)
+            print("\nlives: ", level.user_lives)
             users_number = read_users_number_or_none()
             if users_number is None:
                 continue
@@ -44,8 +34,8 @@ def game():
 
             solution = is_it_higher_lower_win(users_number, rannum)
             if solution[0] == False:
-                reducelive(userslives, 0)
-                if len(userslives) == 0:
+                level.reduce_live()
+                if len(level.user_lives) == 0:
                     print("""GAME OVER! You lost all your lives
 The correct answer would have been {}\n""".format(rannum))
                     return start_another_game()
@@ -53,7 +43,7 @@ The correct answer would have been {}\n""".format(rannum))
                     print(solution[1])
                     continue
             else:
-                if type(level_input) == list:
+                if level.level == 5:
                     listitem = listitem + 1
                     if listitem == 4:
                         print(solution[1])
@@ -63,7 +53,7 @@ The correct answer would have been {}\n""".format(rannum))
                         print(solution[1])
                         print("You are now entering the next level.")
                         rannum = rannumbs[listitem]
-                        limit = level_input[listitem]
+                        limit = level[listitem]
                         continue
                 else:
                     print(solution[1])
