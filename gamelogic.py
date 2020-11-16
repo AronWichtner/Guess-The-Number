@@ -54,7 +54,7 @@ The correct answer would have been {}\n""".format(rannum))
                 if type(x) == list:
                     listitem = listitem + 1
                     if listitem == 4:
-                        print(solution[1])
+                        print(solution)
                         print("You completed all levels.")
                         return start_another_game()
                     else:
@@ -64,7 +64,7 @@ The correct answer would have been {}\n""".format(rannum))
                         limit = x[listitem]
                         continue
                 else:
-                    print(solution[1])
+                    print(solution)
                     print("You completed this level.")
                     return start_another_game()
 
