@@ -50,7 +50,7 @@ The correct answer would have been {}\n""".format(rannum))
                         print("You completed all levels.")
                         return start_another_game()
                     else:
-                        print(solution[1])
+                        print(solution)
                         print("You are now entering the next level.")
                         rannum = rannumbs[listitem]
                         limit = level[listitem]
