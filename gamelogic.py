@@ -1,6 +1,5 @@
 from userinputprocessing import *
 from setalevel import *
-from userlives import *
 
 
 def game():
@@ -53,7 +52,7 @@ The correct answer would have been {}\n""".format(rannum))
                         print(solution)
                         print("You are now entering the next level.")
                         rannum = rannumbs[listitem]
-                        limit = level[listitem]
+                        limit = level.limits[listitem]
                         continue
                 else:
                     print(solution)
